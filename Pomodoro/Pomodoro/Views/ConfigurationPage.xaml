@@ -19,4 +19,9 @@
         <Picker ItemsSource="{Binding BreakDurations}"
                     SelectedItem="{Binding SelectedBreakDuration, Mode=TwoWay}" />
     </StackLayout>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Guardar"
+                     Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>

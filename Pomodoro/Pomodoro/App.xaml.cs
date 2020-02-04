@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pomodoro.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +12,7 @@ namespace Pomodoro
             InitializeComponent();
 
             MainPage = new RootPage();
+            //MainPage = new PomodoroPage();
         }
 
         protected override void OnStart()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pomodoro.ViewModels;
+using Pomodoro.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,22 +17,35 @@ namespace Pomodoro
         public RootPage()
         {
             InitializeComponent();
-            //MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+
+            MessagingCenter.Subscribe<RootPageViewModel>(this, "GoToPomodoro", (a) =>
+            {
+                Detail = new NavigationPage(new PomodoroPage());
+                IsPresented = false;
+            });
+
+            MessagingCenter.Subscribe<RootPageViewModel>(this, "GoToConfiguration" ,(a)=> 
+            {
+                Detail = new NavigationPage(new ConfigurationPage());
+                IsPresented = false;
+            } );
+
+
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var item = e.SelectedItem as RootPageMasterMenuItem;
-            if (item == null)
-                return;
+        //private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    var item = e.SelectedItem as RootPageMasterMenuItem;
+        //    if (item == null)
+        //        return;
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+        //    var page = (Page)Activator.CreateInstance(item.TargetType);
+        //    page.Title = item.Title;
 
-            Detail = new NavigationPage(page);
-            IsPresented = false;
+        //    Detail = new NavigationPage(page);
+        //    IsPresented = false;
 
-            //MasterPage.ListView.SelectedItem = null;
-        }
+        //    //MasterPage.ListView.SelectedItem = null;
+        //}
     }
 }
